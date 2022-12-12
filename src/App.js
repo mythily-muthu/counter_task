@@ -1,23 +1,39 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 
 function App() {
   let [counter, setCounter] = useState(0)
 
-  let increment = (() => {
+
+  useEffect(() => {
+    // if (counter > 9) {
+    //   alert('you have reached 10')
+    // }
+    console.log("counter value chnage:", counter);
+  }, [counter]);
+
+
+
+  let handleIncrement = (() => {
+    console.log("counter:", counter)
+    if (counter > 9 && counter < 17) {
+      alert("limit reacthed 15")
+    }
     setCounter(prevCount => prevCount + 1)
   });
 
-  let decrement = (() => {
+  let handleDecrement = (() => {
     setCounter(prevCount => prevCount - 1)
   });
+
+
 
   return (
     <div className="App">
 
       <button
         className='likes'
-        onClick={increment}> LIKES
+        onClick={handleIncrement}> LIKES
       </button >
 
 
@@ -25,7 +41,7 @@ function App() {
 
       <button
         className='dislikes'
-        onClick={decrement}> DISLIKES
+        onClick={handleDecrement}> DISLIKES
       </button>
 
     </div >
